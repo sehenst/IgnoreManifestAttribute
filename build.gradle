@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+normalization {
+    runtimeClasspath {
+        metaInf {
+            ignoreAttribute("Build-Timestamp")
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes("Build-Timestamp": new Date(),
+                "Gradle-Version": "Gradle ${gradle.gradleVersion}")
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
